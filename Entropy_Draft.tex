@@ -93,39 +93,19 @@
 \tableofcontents
 \pagebreak
 
-\section{Research Question}
-Treating Functions As A Vector, How Can A Representation Be Constructed Using A Set Of Basis Functions?
 
-\section{Introduction}
-For me, the idea of finding sets of basis functions that can be combined to approximate 
-others, first came to me when we were learning about the 
-Taylor Series representation of differentiable functions in class.
-
-Using the Taylor Series, any infinitely differentiable 
-function can be written as the sum of a polynomial series,
-using n-th degree derivatives as as coefficients on the 
-respective power of x.
-
-Afterwards, when learning linear algebra, I realized that 
-functions shared many of the same crucial properties with vectors.
-In this light, the Taylor Series expansion can be seen 
-as expressing the original function in terms of a set 
-of basis functions, just like how any three dimensional 
-vector can be written as a linear combination of the $\hat{i}, \hat{j}$ and $\hat{k}$
-basis vectors.
-
-My goal in this investigation therefore became to determine
-what conditions were allowed for a function to be 
-approximated using a linear combination of some other set of basis functions,
-using properties of vectors to analyze this problem.
-
-\section{Vector Spaces}
-
-Before any properties of functions as vectors can be discussed, 
-a formal definition of a vector space must first be defined. 
-From \cite{AdvancedCalculus}, a vector space is defined the following
-manner: 
-
+\begin{definition}[Inner Product]
+  Given a vector space $\mathbb{V}$ with a corresponding scalar field $\mathbb{S}$, it is said to posses and inner product if there exists
+  a function $\braket{\B{x}| \B{y}} : \mathbb{V} \times \mathbb{V} \to \mathbb{S}$ defined over the entire vector space that satisfies the following conditions:
+  \cite{AdvancedCalculus}
+  \begin{enumerate}
+    \item Scalar Associative in Second Argument: $\braket{\B{x}|c\B{y}} = c\braket{\B{x}| \B{y}} ~ \forall \B{x}, \B{y} \in \mathbb{V}, c \in \mathbb{S}$
+    \item Distributive In Second Argument: $\braket{\B{x}| ~ \B{y} + \B{z}} = \braket{\B{x}| \B{y}} + \braket{\B{x}|\B{z}}  ~ \forall \B{x}, \B{y}, \B{z} \in \mathbb{V}$
+    \item Symmetry: $\braket{\B{x}| \B{y}} = \braket{\B{y}|\B{x}} ~ \forall \B{x}, \B{y} \in \mathbb{V}$
+    \item Positive Semi-Definite: $\braket{\B{x}| \B{x}} > 0 \leftrightarrow \B{x} \neq \vec{0}, \braket{\B{x}| \B{x}} = 0 \leftrightarrow \B{x} = \vec{0}$
+  \end{enumerate}
+  \label{def:InnerProduct}
+\end{definition}
 
 \begin{theorem}
   The set of lefthand continuous functions $\mathscr{F}_{\mathcal{L}}$ is the
@@ -135,27 +115,197 @@ manner:
 
 
 \begin{theorem}
-  Assume exists vector space $\mathbb{V}$ and IPS $\braket{|}$.
-  For any two linearly independent elements $\vec{v}, \vec{w} \in \mathbb{V}, \vec{v}, \vec{w} \neq \vec{0}$, there exists
-  inner product $\braket{|}^\prime$ on $\mathbb{V}$ such that $\braket{\vec{v}|\vec{w}}^\prime = 0$.
-  
-  Define $\vec{w}^\prime$ to be the element that $\vec{v} + \vec{w}^\prime \triangleq \vec{w}$,
-  and $\braket{\vec{v}|\vec{w}^\prime} \triangleq \vec{0}$. For any element 
-  $\vec{p} = p_v \vec{v} + p_w \vec{w} + \vec{p}_{\perp}$ where $\vec{p}_\perp$ 
-  is any element orthogonal to both $\vec{v}$ and $\vec{w}$.
+  Assume IPS $\mathbb{V}$ has inner product $\braket{|}$. Let $\mathcal{L}_{\circ}$ denote the 
+  set of non-degenerate linear operators on $\mathbb{V}$, such that $\forall L \in \mathcal{L}_\circ, ~ L \B{x} = 0 \leftrightarrow \B{x} = 0$.
 
-    
-  Define 
+  The set of valid inner products $\braket{|}^\prime$ on $\mathbb{V}$ is defined by
   \begin{equation}
-    \braket{\vec{p}~|~\vec{q}}^\prime \triangleq p_v q_v + p_w q_w + \braket{\vec{p}_{\perp}| \vec{q}_{\perp}}
+    \braket{\B{x}|\B{y}}^\prime = \braket{ L \B{x} | L \B{y}}
   \end{equation}
-
-  Then $\braket{|}^\prime$ is a valid inner product on $\mathbb{V}$.
-
 \end{theorem}
+
+\begin{proof}
+  First, proof that every non-degenerate linear operator defines a valid inner product:
+  \begin{enumerate}
+    \item $\braket{\B{x}|c\B{y}}^\prime = \braket{ L \B{x} | L (c \B{y})} = c \braket{ L \B{x} | L \B{y}} = c\braket{ \B{x} | \B{y}}^\prime$
+    \item $\braket{\B{x}| ~ \B{y} + \B{z}}^\prime = \braket{L \B{x}| ~ L (\B{y} + \B{z})} =  \braket{L \B{x}| L \B{y}} + \braket{L \B{x} |L\B{z}}=\braket{\B{x}| \B{y}}^\prime + \braket{\B{x}|\B{z}}^\prime$
+    \item $\braket{\B{x}| \B{y}}^\prime = \braket{ L \B{x} | L \B{y}} = \braket{ L \B{y} | L \B{x}} =  \braket{\B{y}|\B{x}}^\prime$
+    \item $(\braket{\B{x}| \B{x}}^\prime > 0 ) \leftrightarrow (\braket{ L \B{x}| L \B{x}} > 0) \leftrightarrow  (L \B{x} \neq \vec{0})  \leftrightarrow (\B{x} \neq \vec{0})$.
+    \item $(\braket{\B{x}| \B{x}}^\prime > 0 ) \leftrightarrow (\braket{ L \B{x}| L \B{x}} > 0) \leftrightarrow  (L \B{x} \neq \vec{0})  \leftrightarrow (\B{x} \neq \vec{0})$.
+    \item $\braket{\vec{0}|\vec{0}}^\prime = \braket{L \vec{0} | L \vec{0}} = \braket{\vec{0}|\vec{0}} = 0 $
+  \end{enumerate}
+
+  % Next, proof that each inner product defined in this way is unique:
+
+  % Following the conventional equality definition for functions, two inner products $\braket{|}^\prime, \braket{|}^{\prime\prime}$ are
+  % considered equal iff $\braket{\B{x}|\B{y}}^\prime = \braket{\B{x}|\B{y}}^{\prime\prime} ~ \forall \B{x}, \B{y} \in \mathbb{V}$.
+
+  % For any two distinct non-degenerate linear operators $H, G$, there exists 
+
+  Next, proof that every inner product is defined by a non-degenerate linear operator:
+  Given $\braket{|}^\prime$, take the function $f_{\B{y}}(\B{x}) = \braket{\B{y} | \B{x}}^\prime$.
+  This function is a linear transformation from $\mathbb{V}$ to $\mathbb{S}$: 
+  \begin{enumerate}
+    \item  $f_{\B{y}}(c\B{x})= \braket{\B{y} | c\B{x}}^\prime = c \braket{\B{y} | \B{x}}^\prime = cf_{\B{y}}(\B{x})$
+    \item $f_{\B{y}}(\B{x} + \B{z})  = \braket{\B{y}| ~ \B{x} + \B{z}}^\prime = \braket{\B{y}| \B{x}}^\prime + \braket{\B{y}| \B{z}}^\prime =  f_{\B{y}}(\B{x}) + f_{\B{y}}(\B{z}) $
+  \end{enumerate}
+
+  Because $\mathbb{V}$ forms an inner product space, each vector element $\B{w}$ uniquely defines a linear transformation
+  from $\mathbb{V} \to \mathbb{S}$ given by $\braket{\B{w} | \B{x}} = L(\B{x})$. Moreover, the set of 
+  linear scalar maps over $\mathbb{V}$ is isomorphic to the set $\mathbb{V}$ itself, and any linear 
+  scalar transform $L_{\B{w}}(\B{x})$ can be uniquely assigned to a vector $\B{w}$ such that $L_{\B{w}}(\B{x}) = \braket{\B{w}|\B{x}} ~\forall \B{x} \in \mathbb{V}$
+  (Proved In Following Section).
+
+  For any given $\B{y}$, $f_{\B{y}}(\B{x})$ defines a linear scalar transform, and is there exists $\B{w}$ such that
+  $f_{\B{y}}(\B{x}) = \braket{\B{w} | \B{x}}$. Therefore, for any $\B{y} \in \mathbb{V}$, there exists unique $\B{w} \in \mathbb{V}$ such that
+  $\braket{\B{y}|\B{x}}^\prime = \braket{\B{w} | \B{x}} ~ \forall \B{x} \in \mathbb{V}$. Define the function 
+  $H(\B{y}) : \mathbb{V} \to \mathbb{V} = \B{w}$ in this way, such that $\braket{\B{y}|\B{x}}^\prime \triangleq \braket{H(\B{y}) | \B{x}}$.
+  By the properties of linearity, $H(\B{y})$ must be linear:
+
+    $\braket{H(c\B{y}) | \B{x}}  =  c \braket{\B{y} |\B{x}}^\prime = c \braket{H(\B{y}) | \B{x}} =  \braket{c H(\B{y}) | \B{x}} ~ \forall \B{x}, \B{y} ~ \therefore H(c\B{y}) = c H(\B{y})$
+
+   $\braket{H(\B{y} + \B{z}) | \B{x}} = \braket{\B{y} + \B{z} |\B{x}}^\prime =  \braket{H(\B{y}) + H(\B{z}) | \B{x}} ~ \therefore H(\B{y} + \B{z}) = H(\B{y}) + H(\B{z})$
+
+   Likewise, using the symmetry property, there must be a linear transform $G(\B{x})$ such that 
+   $\braket{\B{y}|\B{x}}^\prime = \braket{\B{y}|G(\B{x})}$. Therefore, any inner product $\braket{\B{y}|\B{x}}^\prime$
+   can be written as $\braket{H(\B{y})|G(\B{x})}$ with linear operators $H, G$.
+
+   By the property of symmetry, 
+   \begin{align}
+    \braket{\B{y}|\B{x}}^\prime &= \braket{H(\B{y})|G(\B{x})} = \braket{G(\B{x})|H(\B{y})} \\
+    &= \braket{\B{x}|\B{y}}^\prime = \braket{H(\B{x})|G(\B{y})}  \\
+    \therefore & \braket{G(\B{x})|H(\B{y})} =  \braket{H(\B{x})|G(\B{y})} \label{eq:innerProductSymmetry}
+   \end{align}
+   Equation (\refeq{eq:innerProductSymmetry}) is true generally for any $\B{x}, \B{y} \in \mathbb{V}$, which is only possible if
+  $H(\B{x}) = G(\B{x}) ~ \forall \B{x} \in \mathbb{V}$, and consequently:
+   \begin{equation}
+    \braket{\B{y}|\B{x}}^\prime = \braket{H(\B{y})|H(\B{x})}
+   \end{equation}
+
+   Finally, to show that $H(\B{y})$ must be non-degenerate, consider if $H(\B{y}) = \vec{0}$ for some $\B{y} \neq \vec{0}$. Then
+   $\braket{\B{y}|\B{y}}^\prime = \braket{H(\B{y})|H(\B{y})} = \braket{\vec{0}|\vec{0}} = 0$, contradicting condition 
+   (4) of definition \ref{def:InnerProduct}, so therefore $H(\B{y}) \neq \vec{0} \leftrightarrow \B{y} \neq \vec{0}$, 
+   showing that $H(\B{y})$ must be non-degenerate.
+\end{proof}
+
+\begin{theorem}
+  For some domain $\mathcal{D}$, assume exists $S(a) : \mathcal{D} \to \set{\mathcal{D}}$ such that
+  $\forall  \set{a | a \in \mathcal{D} \cap  S(a) \neq \emptyset} , ~ \forall s \in S(a) $, can find $b \in \mathcal{D}$ such that
+  $S(b) \subset S(a)$ and $s \notin S(b)$. Prove there exists $c \in \mathcal{D}$ such that $S(c) = \emptyset$.
+\end{theorem}
+
 \begin{proof}
   
 \end{proof}
+
+\begin{theorem}
+  In IPS $\mathbb{V}$, every linear transformation from $L(\B{x}) : \mathbb{V} \to \mathbb{S}$ can be 
+  assigned an unique vector element $\B{y}$ such that 
+  \begin{equation}
+    L(\B{x}) = \braket{\B{y}|\B{x}} ~ \forall \B{x} \in \mathbb{V} \label{eq:linearMapCompleteness}
+  \end{equation}
+\end{theorem}
+
+\begin{proof}
+  Assume exists set $\mathcal{L}_\emptyset$ such that, for each $L \in \mathcal{L}_\emptyset$,
+  there exists no $\B{y}$ satisfying equation (\refeq{eq:linearMapCompleteness}). By linearity,
+  any sum of linear transforms must also be a linear transform between those sets. Define 
+  $L_0(\B{x}) = L(\B{x}) + \braket{\B{x}_0|\B{x}}$ for some $\B{x}_0$. If $L_0(\B{x}) = \braket{\B{y}|\B{x}}$
+  for some $\B{y}$, then 
+  \begin{equation}
+    L(\B{x}) = L_0(\B{x}) - \braket{\B{x}_0|\B{x}} = \braket{\B{y}|\B{x}} - \braket{\B{x}_0|\B{x}} = \braket{\B{y} - \B{x}_0|\B{x}}
+  \end{equation}
+  which is a contradiction. Therefore $L_0$ must be in $\mathcal{L}_\emptyset$. Similarly, for 
+  any $L \in \mathcal{L}_\emptyset$ and $\B{x}_k \in \mathbb{V}$,
+  $L_k = L + \bra{\B{x}_k} $ must be in $\mathcal{L}_\emptyset$.
+\end{proof}
+
+
+% \begin{theorem}
+%   Assume exists vector space $\mathbb{V}$ and IPS $\braket{|}$.
+%   For any two linearly independent elements $\vec{v}, \vec{w} \in \mathbb{V}, \vec{v}, \vec{w} \neq \vec{0}$, there exists
+%   inner product $\braket{|}^\prime$ on $\mathbb{V}$ such that $\braket{\vec{v}|\vec{w}}^\prime = 0$.
+  
+%   Define $\vec{w}^\prime$ to be the element that $\vec{v} + \vec{w}^\prime \triangleq \vec{w}$,
+%   and $\braket{\vec{v}|\vec{w}^\prime} \triangleq \vec{0}$. For any element 
+%   $\vec{p} = p_v \vec{v} + p_w \vec{w} + \vec{p}_{\perp}$ where $\vec{p}_\perp$ 
+%   is any element orthogonal to both $\vec{v}$ and $\vec{w}$, 
+%   and 
+%   \begin{equation}
+%     \begin{cases}
+%       p_v  &= (\braket{\vec{p}~|~\vec{v}} - \braket{\vec{p}~|~\vec{w}}\braket{\vec{v}~|~\vec{w}}) \vec{v} \\
+%       p_w  &= (\braket{\vec{p}~|~\vec{w}} - \braket{\vec{p}~|~\vec{v}}\braket{\vec{v}~|~\vec{w}}) \vec{w} \\
+%     \end{cases}
+%   \end{equation}
+
+    
+%   Define 
+%   \begin{equation}
+%     \braket{\vec{p}~|~\vec{q}}^\prime \triangleq p_v q_v + p_w q_w + \braket{\vec{p}_{\perp}| \vec{q}_{\perp}}
+%   \end{equation}
+
+%   Then $\braket{|}^\prime$ is a valid inner product on $\mathbb{V}$, with $\braket{\vec{v}|\vec{w}} \triangleq 0$ .
+
+% \end{theorem}
+% \begin{proof}
+%   From previous definition:
+%   \begin{enumerate}
+%     \item $\braket{\B{x}|c\B{y}}^\prime = x_v (c y_v) + x_w (c y_w) + c\braket{\B{x}_\perp | \B{y}_\perp}  = c\braket{\B{x} | \B{y}}^\prime  $
+%     \item $\braket{\B{x}| ~ \B{y} + \B{z}}^\prime =  x_v (y_v + z_v) + x_w (y_w + z_w) + \braket{\B{x}_\perp | \B{y}_\perp + \B{z}_\perp} = \braket{\B{x}| \B{y}}^\prime + \braket{\B{x}|\B{z}}^\prime$
+%     \item $\braket{\B{x}| \B{y}}^\prime =x_v ( y_v) + x_w ( y_w) + \braket{\B{x}_\perp | \B{y}_\perp} = y_v ( x_v) + y_w ( x_w) + \braket{\B{y}_\perp | \B{x}_\perp} =  \braket{\B{y}|\B{x}}^\prime$
+%     \item $\braket{\B{x}| \B{x}}^\prime = (x_v)^2 + (x_w)^2 + \braket{\B{x}_{\perp}| \B{x}_{\perp}}$, each term is positive, except iff $\B{x} = \vec{0}$.
+%   \end{enumerate}
+% \end{proof}
+
+% \begin{theorem}
+%   For any set of linearly independent, non-zero vector elements $\{\B{u}_k\}$ in IPS $\mathbb{V}$,
+%   there exists valid inner product $\braket{|}^\prime$ on $\mathbb{V}$ such that $\braket{\B{u}_i|\B{u}_j}^\prime \triangleq \delta_{ij}$.
+% \end{theorem}
+
+% \begin{theorem}
+%   For $k \in \R$, define 
+%   \begin{equation}
+%     \B{u}_k(x) \triangleq 
+%     \begin{cases}
+%       0,  & x \neq k \\
+%       1, & x = k \\
+%     \end{cases}
+%   \end{equation}
+  
+%   Then any set $\{\B{u}_k\}$ is linearly independent. Therefore, if $\B{u}_k$ are elements within
+%   some IPS $\mathbb{V}$, there exists $\braket{|}^\prime$ such that $\{\B{u}_k\}$ are orthonormal.
+
+%   Define the function $I(x) = 1$. If $I(x) \in \mathbb{V}$, then $\braket{I(x)|I(x)}$ is well defined.
+  
+%   If we have by $\delta(x)$ defined by $\int \delta(x) dx = 1$ and $\delta(a) = 0 ~ \forall a \neq 0$,
+%   then $I(x) = \int \B{u}_k (x) \delta(k - x) dk$. Then 
+%   \begin{align}
+%     \braket{I(x)|I(x)} &= \int \int \braket{\B{u}_l(x)\delta(l-x)|\B{u}_k(x)\delta(k-x)} dl dk \\
+%     &= \int \int \delta(0)^2 \braket{}
+%   \end{align}
+% \end{theorem}
+\begin{theorem}
+  Assume IPS $\mathbb{V}$ has inner product $\braket{|}$. Let $\set{\B{u}_k}$ be a countable,
+  linearly independent, non-zero subset of $\mathbb{V}$. All valid inner products 
+  on $\mathbb{V}$ can be generated by 
+  \begin{equation}
+    \braket{\B{x}|\B{y}}^\prime = \sum_{i=0}^k x_{u_i} y_{u_i} + \braket{\B{x}_\perp |\B{y}_\perp}
+  \end{equation}
+\end{theorem}
+
+\begin{theorem}
+  Assume IPS $\mathbb{V}$ has inner product $\braket{|}$. 
+  Let $\set{\phi(x)}$ be the set of functions defined and measurable over $\mathcal{D}$, with 
+  $\phi(a) > \phi(b) \leftrightarrow a > b, ~ \forall a, b \in \mathcal{D}$.
+  All valid inner products on $\mathbb{V}$ are defined by 
+  \begin{equation}
+    \braket{f(x)|g(x)}^\prime = \int f(x) g(x) d \phi^\prime(x)  
+  \end{equation}
+  for some $\phi^\prime \in \set{\phi(x)}$.
+\end{theorem}
+
+
+\newpage
 \begin{definition}[Vector Space]
   A Vector Space $\mathbb{V}$ is defined along with a scalar field $\mathbb{S}$
   to be any set that has the following properties:
@@ -206,18 +356,7 @@ determined by the angle between the two vectors. The Inner Product doesn't need
 to be restricted to this geometric definition though, and can be generalized
 to allow for a measurement of `closeness' encompassing vector spaces in a broader sense.
 
-\begin{definition}[Inner Product]
-  Given a vector space $\mathbb{V}$ with a corresponding scalar field $\mathbb{S}$, it is said to posses and inner product if there exists
-  a function $\braket{\B{x}| \B{y}} : \mathbb{V} \times \mathbb{V} \to \mathbb{S}$ defined over the entire vector space that satisfies the following conditions:
 
-  \begin{enumerate}
-    \item Scalar Associative in Second Argument: $\braket{\B{x}|c\B{y}} = c\braket{\B{x}| \B{y}} ~ \forall \B{x}, \B{y} \in \mathbb{V}, c \in \mathbb{S}$
-    \item Distributive In Second Argument: $\braket{\B{x}| ~ \B{y} + \B{z}} = \braket{\B{x}| \B{y}} + \braket{\B{x}|\B{z}}  ~ \forall \B{x}, \B{y}, \B{z} \in \mathbb{V}$
-    \item Symmetry: $\braket{\B{x}| \B{y}} = \braket{\B{y}|\B{x}} ~ \forall \B{x}, \B{y} \in \mathbb{V}$
-    \item Positive Semi-Definite: $\braket{\B{x}| \B{x}} > 0 \leftrightarrow \B{x} \neq \vec{0}, \braket{\B{x}| \B{x}} = 0 \leftrightarrow \B{x} = \vec{0}$
-  \end{enumerate}
-  \label{def:InnerProduct}
-\end{definition}
 
 \subsection{Finding A Valid Inner Product in $\mathscr{F}$}
 

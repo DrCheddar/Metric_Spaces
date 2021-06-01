@@ -1,7 +1,7 @@
-PWD c:\Data\School\2021-02-18 Entropy Draft
+PWD c:\Data\School\2021-02-18 Inner Product Variations
 INPUT C:\Users\DrChe\AppData\Local\MiKTeX\2.9\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Data\School\2021-02-18 Entropy Draft\Entropy_Draft.tex
-OUTPUT c:\Data\School\2021-02-18 Entropy Draft\Entropy_Draft.log
+INPUT c:\Data\School\2021-02-18 Inner Product Variations\Metric_Spaces.tex
+OUTPUT c:\Data\School\2021-02-18 Inner Product Variations\Metric_Spaces.log
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\size10.clo
@@ -75,7 +75,7 @@ INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmr10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmr10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\unicode-data\UnicodeData.txt
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\unicode-data\UnicodeData.txt
-INPUT c:\Data\School\2021-02-18 Entropy Draft\nul:.tex
+INPUT c:\Data\School\2021-02-18 Inner Product Variations\nul:.tex
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3backend\l3backend-pdfmode.def
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3backend\l3backend-pdfmode.def
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3packages\xparse\xparse.sty
@@ -145,9 +145,13 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\latex\braket\braket.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\braket\braket.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\enumitem\enumitem.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\enumitem\enumitem.sty
-INPUT c:\Data\School\2021-02-18 Entropy Draft\Entropy_Draft.aux
-INPUT c:\Data\School\2021-02-18 Entropy Draft\Entropy_Draft.aux
-OUTPUT c:\Data\School\2021-02-18 Entropy Draft\Entropy_Draft.aux
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\bbold\bbold.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\bbold\bbold.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\doublestroke\dsfont.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\doublestroke\dsfont.sty
+INPUT c:\Data\School\2021-02-18 Inner Product Variations\Metric_Spaces.aux
+INPUT c:\Data\School\2021-02-18 Inner Product Variations\Metric_Spaces.aux
+OUTPUT c:\Data\School\2021-02-18 Inner Product Variations\Metric_Spaces.aux
 INPUT C:\Program Files\MiKTeX 2.9\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Program Files\MiKTeX 2.9\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty
@@ -215,64 +219,75 @@ INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmtt8.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmr17.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx12.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmr12.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmmi12.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmmi12.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmsy10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmsy10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmex10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmex10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmss17.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmss12.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmtt12.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmtt12.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msam10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msam10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
+INPUT C:\Users\DrChe\AppData\Local\MiKTeX\2.9\fonts\tfm\public\rsfs\rsfs10.tfm
+INPUT C:\Users\DrChe\AppData\Local\MiKTeX\2.9\fonts\tfm\public\rsfs\rsfs10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx12.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmmib10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmmib10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbsy10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbsy10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmr8.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmr6.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmmi12.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmmi8.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmmi6.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmsy10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmsy8.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmsy6.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmex10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\cmextra\cmex8.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmss12.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmss8.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmss8.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmtt12.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmtt8.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmtt8.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msam10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msam10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msam7.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
 INPUT C:\Users\DrChe\AppData\Local\MiKTeX\2.9\fonts\tfm\public\rsfs\rsfs10.tfm
-INPUT C:\Users\DrChe\AppData\Local\MiKTeX\2.9\fonts\tfm\public\rsfs\rsfs10.tfm
 INPUT C:\Users\DrChe\AppData\Local\MiKTeX\2.9\fonts\tfm\public\rsfs\rsfs5.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx12.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx8.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx6.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmmib10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\cmextra\cmmib8.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\cmextra\cmmib6.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbsy10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\cmextra\cmbsy8.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\cmextra\cmbsy6.tfm
-OUTPUT c:\Data\School\2021-02-18 Entropy Draft\Entropy_Draft.pdf
+OUTPUT c:\Data\School\2021-02-18 Inner Product Variations\Metric_Spaces.pdf
 INPUT C:\Users\DrChe\AppData\Local\MiKTeX\2.9\pdftex\config\pdftex.map
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmr12.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx12.tfm
-INPUT c:\Data\School\2021-02-18 Entropy Draft\Entropy_Draft.toc
-INPUT c:\Data\School\2021-02-18 Entropy Draft\Entropy_Draft.toc
-OUTPUT c:\Data\School\2021-02-18 Entropy Draft\Entropy_Draft.toc
+INPUT c:\Data\School\2021-02-18 Inner Product Variations\Metric_Spaces.toc
+INPUT c:\Data\School\2021-02-18 Inner Product Variations\Metric_Spaces.toc
+OUTPUT c:\Data\School\2021-02-18 Inner Product Variations\Metric_Spaces.toc
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\jknappen\ubbold.fd
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\jknappen\ubbold.fd
+INPUT C:\Users\DrChe\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbold\bbold10.tfm
+INPUT C:\Users\DrChe\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbold\bbold7.tfm
+INPUT C:\Users\DrChe\AppData\Local\MiKTeX\2.9\fonts\tfm\public\bbold\bbold5.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmti10.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmti7.tfm
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmti7.tfm
-INPUT c:\Data\School\2021-02-18 Entropy Draft\Entropy_Draft.bbl
-INPUT c:\Data\School\2021-02-18 Entropy Draft\Entropy_Draft.bbl
-INPUT c:\Data\School\2021-02-18 Entropy Draft\Entropy_Draft.aux
+INPUT c:\Data\School\2021-02-18 Inner Product Variations\Metric_Spaces.bbl
+INPUT c:\Data\School\2021-02-18 Inner Product Variations\Metric_Spaces.bbl
+INPUT c:\Data\School\2021-02-18 Inner Product Variations\Metric_Spaces.aux
+INPUT C:\Users\DrChe\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\public\bbold\dpi600\bbold10.pk
+INPUT C:\Users\DrChe\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\public\bbold\dpi600\bbold10.pk
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbx10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbx10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbx12.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbx12.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmex10.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmex10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi10.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi5.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi5.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi7.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi7.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmib10.pfb
@@ -283,8 +298,6 @@ INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr12.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr12.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr7.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr7.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy7.pfb
@@ -293,7 +306,3 @@ INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmti10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmti10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\symbols\msam10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\symbols\msam10.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\symbols\msbm10.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\symbols\msbm10.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\rsfs\rsfs10.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\rsfs\rsfs10.pfb

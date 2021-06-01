@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.9.9)  19 APR 2021 22:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.9.9)  1 JUN 2021 14:18
 entering extended mode
-**"c:/Data/School/2021-02-18 Entropy Draft/Entropy_Draft.tex"
-("c:/Data/School/2021-02-18 Entropy Draft/Entropy_Draft.tex"
+**"c:/Data/School/2021-02-18 Inner Product Variations/Metric_Spaces.tex"
+("c:/Data/School/2021-02-18 Inner Product Variations/Metric_Spaces.tex"
 LaTeX2e <2018-12-01>
 ("C:\Program Files\MiKTeX 2.9\tex/latex/base\article.cls"
 Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
@@ -540,28 +540,33 @@ Package: enumitem 2019/06/20 v3.9 Customized lists
 \enit@inbox=\box63
 \enit@count@id=\count300
 \enitdp@description=\count301
+) ("C:\Program Files\MiKTeX 2.9\tex/latex/bbold\bbold.sty"
+Package: bbold 1994/04/06 Bbold symbol package
+LaTeX Font Info:    Redeclaring math alphabet \mathbb on input line 42.
+) ("C:\Program Files\MiKTeX 2.9\tex/latex/doublestroke\dsfont.sty"
+Package: dsfont 1995/08/01 v0.1 Double stroke roman fonts
 )
-LaTeX Info: Redefining \iff on input line 49.
+LaTeX Info: Redefining \iff on input line 51.
 \c@theorem=\count302
 \c@definition=\count303
 \c@corollary=\count304
 \c@proposition=\count305
 \c@post=\count306
- ("c:/Data\School\2021-02-18 Entropy Draft\Entropy_Draft.aux")
-\openout1 = `Entropy_Draft.aux'.
+ ("c:/Data\School\2021-02-18 Inner Product Variations\Metric_Spaces.aux")
+\openout1 = `Metric_Spaces.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
  ("C:\Program Files\MiKTeX 2.9\tex/context/base/mkii\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count307
@@ -696,52 +701,42 @@ Package: ltcaption 2018/08/26 v1.4a longtable captions (AR)
 Package caption Info: End \AtBeginDocument code.
  ABD: EveryShipout initializing macros
 
-Package chemgreek Info: Activating mapping `default' on line 87.
+Package chemgreek Info: Activating mapping `default' on line 90.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 87.
+LaTeX Font Info:    Try loading font information for U+msa on input line 90.
  ("C:\Program Files\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 87.
+LaTeX Font Info:    Try loading font information for U+msb on input line 90.
  ("C:\Program Files\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 87.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 90.
  ("C:\Program Files\MiKTeX 2.9\tex/latex/jknappen\ursfs.fd"
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
-)
+) [1
 
-LaTeX Warning: No \author given.
-
-[1
-
-{C:/Users/DrChe/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] ("c:/Data\School\2021-02-18 Entropy Draft\Entropy_Draft.toc")
+{C:/Users/DrChe/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] ("c:/Data\School\2021-02-18 Inner Product Variations\Metric_Spaces.toc")
 \tf@toc=\write4
-\openout4 = `Entropy_Draft.toc'.
+\openout4 = `Metric_Spaces.toc'.
 
- [2] [3] [4] [5] [6] [7]
-Overfull \hbox (2.69495pt too wide) in paragraph at lines 352--358
-[]\OT1/cmr/m/n/10 However, gen-er-ally to de-ter-mine these co-ef-fi-cients, an in-ner prod-uct is needed.
- []
-
-[8]
-Overfull \hbox (4.01129pt too wide) in paragraph at lines 400--402
-[]\OT1/cmr/m/n/10 Secondly, each of the ba-sis vec-tors is \OT1/cmr/m/it/10 nor-mal-ized\OT1/cmr/m/n/10 , mean-ing in the 3-dimensional
- []
-
-[9] [10] [11] [12] [13] [14] ("c:/Data\School\2021-02-18 Entropy Draft\Entropy_Draft.bbl") [15] ("c:/Data\School\2021-02-18 Entropy Draft\Entropy_Draft.aux") ) 
+ [2]
+LaTeX Font Info:    Try loading font information for U+bbold on input line 103.
+ ("C:\Program Files\MiKTeX 2.9\tex/latex/jknappen\ubbold.fd"
+File: ubbold.fd 1996/01/01 Blackboard Bold Font Definition File (jk)
+) [3] [4] [5] [6] [7] ("c:/Data\School\2021-02-18 Inner Product Variations\Metric_Spaces.bbl") [8] ("c:/Data\School\2021-02-18 Inner Product Variations\Metric_Spaces.aux") ) 
 Here is how much of TeX's memory you used:
- 21029 strings out of 492895
- 410026 string characters out of 3133480
- 469372 words of memory out of 3000000
- 24686 multiletter control sequences out of 15000+200000
- 550273 words of font info for 93 fonts, out of 3000000 for 9000
+ 21066 strings out of 492895
+ 411086 string characters out of 3133480
+ 466429 words of memory out of 3000000
+ 24709 multiletter control sequences out of 15000+200000
+ 552636 words of font info for 104 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,12n,63p,871b,382s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/rsfs/rsfs10.pfb>
-Output written on "c:/Data\School\2021-02-18 Entropy Draft\Entropy_Draft.pdf" (15 pages, 220467 bytes).
+ 42i,12n,63p,882b,382s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\DrChe\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/public/bbold/dpi600\bbold10.pk><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on "c:/Data\School\2021-02-18 Inner Product Variations\Metric_Spaces.pdf" (8 pages, 157587 bytes).
 PDF statistics:
- 119 PDF objects out of 1000 (max. 8388607)
+ 83 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

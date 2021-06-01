@@ -1,0 +1,5 @@
+\babel@toc {english}{}
+\contentsline {section}{\numberline {1}Introduction}{3}% 
+\contentsline {section}{\numberline {2}Inner Product Validity}{4}% 
+\contentsline {section}{\numberline {3}Inner Product Completeness}{6}% 
+\contentsline {section}{References}{8}% 

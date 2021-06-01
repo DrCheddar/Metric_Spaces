@@ -1,7 +1,0 @@
-\babel@toc {english}{}
-\contentsline {section}{\numberline {1}Defining An Inner Product}{8}% 
-\contentsline {subsection}{\numberline {1.1}Finding A Valid Inner Product in $\mathscr {F}$}{8}% 
-\contentsline {section}{\numberline {2}Orthogonal Functions}{9}% 
-\contentsline {subsection}{\numberline {2.1}Defining The Closest Representation in an Orthonormal Basis}{10}% 
-\contentsline {subsection}{\numberline {2.2}Determining The Linear Representation of a Given Function}{12}% 
-\contentsline {section}{References}{15}% 

@@ -1,0 +1,955 @@
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{array}
+\usepackage{graphicx,amsmath,amsfonts,amssymb, epsfig,color,url, amsthm}
+\usepackage{siunitx}
+\usepackage{setspace}
+\usepackage{subcaption}
+\usepackage{makecell}
+\usepackage{url}
+\usepackage{longtable}
+\usepackage{csvsimple}
+\usepackage{placeins} % put this in your pre-amble
+\usepackage{flafter}
+\usepackage{mathrsfs} % https://www.ctan.org/pkg/mathrsfs
+\usepackage[version=4]{mhchem}
+\usepackage{bm}
+\usepackage{natbib}
+\usepackage{mathtools}
+\usepackage{braket}
+\usepackage[shortlabels]{enumitem}
+\usepackage{bbold, dsfont}
+
+\sisetup{detect-all}
+
+\makeatletter
+\providecommand\add@text{}
+\newcommand\tagaddtext[1]{%
+  \gdef\add@text{#1\gdef\add@text{}}}% 
+\renewcommand\tagform@[1]{%  
+  \maketag@@@{\llap{\add@text\quad}(\ignorespaces#1\unskip\@@italiccorr)}%
+}
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+\newcommand{\B}[1]{\boldsymbol{#1}}
+
+\newcommand*\R{\mathbb{R}}
+\newcommand*\functionSpaceG{\ensuremath{\mathscr{F}(\mathcal{D})}}
+\newcommand*\funcSpace{\mathscr{F}_M(\mathcal{D})}
+\newcommand*\basisSet{\{\B{u}_n\}}
+
+
+% \newcommand*\r{\rangle}
+% \newcommand*\l{\langle}
+\newcommand{\refeqn}[1]{(\refeq{#1})}
+\newcommand{\overeq}[1]{\overset{\mathrm{#1}}{=\joinrel=}}
+
+\newcommand*\bigcdot{\mathpalette\bigcdot@{.5}}
+\newcommand*\bigcdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+
+\DeclareRobustCommand\iff{\;\Longleftrightarrow\;}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{The Set Of All Inner Products On A Given Vector Space}
+\rfoot{Page \thepage}
+\linespread{1}
+\title{
+  {\LARGE
+   \textbf{What is the Maximal Set of All Functions $\braket{\B{x}|\B{y}}$ That Satisfy The Properties of An Inner Product?}
+   }\\~\\
+   {\large
+    Mathematics Essay
+   }\\~\\
+  % {\large Mathematics Internal Assessment}\\
+  % {\large Colonel By Secondary School}
+}
+\author{Jeffrey Li} 
+\date{\today}
+
+
+\newtheorem{theorem}{Theorem}[section] 
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{corollary}{Corollary}[definition]
+\newtheorem{proposition}{Proposition}
+
+\newtheorem{post}{Postulate}[section]
+
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\doublespacing
+
+\begin{document}
+
+\maketitle
+\pagebreak
+
+
+\tableofcontents
+\pagebreak
+
+\section{Introduction}
+
+First, to define what is meant by a valid inner product:
+\begin{definition}[Inner Product]
+  Given a vector space $\mathbb{V}$ with a corresponding scalar field $\mathbb{S}$, it is said to posses an inner product if there exists
+  a function $\braket{\B{x}| \B{y}} : \mathbb{V} \times \mathbb{V} \to \mathbb{S}$ defined over the entire vector space that satisfies the following conditions (\cite{AdvancedCalculus}):
+  \begin{enumerate}
+    \item Scalar Associative in Second Argument: $\braket{\B{x}|c\B{y}} = c\braket{\B{x}| \B{y}} ~ \forall \B{x}, \B{y} \in \mathbb{V}, c \in \mathbb{S}$
+    \item Distributive In Second Argument: $\braket{\B{x}| ~ \B{y} + \B{z}} = \braket{\B{x}| \B{y}} + \braket{\B{x}|\B{z}}  ~ \forall \B{x}, \B{y}, \B{z} \in \mathbb{V}$
+    \item Conjugate Symmetry: $\braket{\B{x}| \B{y}} = \overline{\braket{\B{y}|\B{x}}} ~ \forall \B{x}, \B{y} \in \mathbb{V}$
+    \item Positive Semi-Definite: $\braket{\B{x}| \B{x}} > 0 \leftrightarrow \B{x} \neq \vec{0}, \braket{\B{x}| \B{x}} = 0 \leftrightarrow \B{x} = \vec{0}$
+  \end{enumerate}
+  \label{def:InnerProduct}
+\end{definition}
+
+In this essay, I will attempt to prove the following:
+\begin{theorem}
+  Assume vector space $\mathbb{V}$ has valid inner product $\braket{|}$. Let $\mathcal{L}_{\circ}$ denote the 
+  set of Hermitian positive-definite linear operators on $\mathbb{V}$.
+
+  The set of valid inner products $\braket{|}^\prime$ on $\mathbb{V}$ is given by the set
+  \begin{equation}
+    \set{\braket{|}^\prime | \braket{\B{x}|\B{y}}^\prime = \braket{ \B{x} | H \B{y}}, H \in \mathcal{L}_\circ}
+  \end{equation}
+\end{theorem}
+
+To prove this, I will first prove that every function $\braket{|}^\prime$ generated
+in this way satisfies the properties of definition (\ref{def:InnerProduct}).
+
+Then I will show that unique linear operator $H$ generates a unique inner product $\braket{|}^H$.
+
+Finally, I will prove that for any arbitrary function $f_i(\B{x}, \B{y})$ satisfying
+the properties of definition (\ref{def:InnerProduct}), we can always find an associated
+Hermitian operator $H_i \in \mathcal{L}_\circ$ such that
+\begin{equation}
+  f_i(\B{x},\B{y}) = \braket{\B{x}|H_i\B{y}} ~ \forall \B{x}, \B{y} \in \mathbb{V}
+\end{equation}
+
+\pagebreak
+\section{Inner Product Validity}
+
+To begin, first I will define what is meant by a Hermitian positive-definite linear operator.
+For the rest of this essay, let $\mathcal{L}$ denote the set of all linear operators on $\mathbb{V}$, with 
+different subscripts denoting different subsets of $\mathcal{L}$.
+
+\begin{definition}[Adjoint]
+  Let $A \in \mathcal{L}$ be a linear operator defined in the vector space. Define the adjoint
+  of $A$, denoted $A^*$, such that for any two vectors $\B{x}, \B{y} \in \mathbb{V}$,
+  \begin{equation}
+    \braket{\B{x}|A\B{y}} = \braket{A^* \B{x} | \B{y}} \label{eq:defAdjoint}
+  \end{equation}
+  
+  A linear operator $H$ is then said to be Hermitian iff it is self-adjoint, or in other words:
+  \begin{equation}
+    \braket{\B{x}|H\B{y}} = \braket{H\B{x} | \B{y}} \label{eq:defHermitian}
+  \end{equation}
+  \label{def:Hermitian}
+\end{definition}
+
+\begin{definition}[Positive Definite]
+  Let $A \in \mathcal{L}$ be a linear operator in the vector space. $A$ is defined to 
+  be positive definite iff, for any vector $\B{x} \neq \vec{0} \in \mathbb{V}$, 
+  \begin{equation}
+    \braket{\B{x}|A\B{x}} > 0 \label{eq:positiveDefinite}
+  \end{equation}
+\end{definition}
+
+Consequently, the set $\mathcal{L}_\circ$ is defined to be the set of linear operators satisfying both 
+conditions from equations (\refeq{eq:defHermitian}) and (\refeq{eq:positiveDefinite}).
+
+\begin{theorem}[Inner Product Validity]
+  Define $H \in \mathcal{L}_\circ$ to be an arbitrary non-singular linear
+  operator. Define the function $\braket{\B{x}|\B{y}}^\prime$ from above, such that
+  $\braket{\B{x}|\B{y}}^\prime = \braket{ \B{x} | H \B{y}}$.
+  The function $\braket{\B{x}|\B{y}}^\prime$  satisfies the properties of a valid inner product.
+\end{theorem}
+
+\begin{proof}
+  Going down each item in definition (\ref{def:InnerProduct}), let $\B{x}, \B{y}, \B{z} \in \mathbb{V}$ be any arbitrary vectors and $c \in \mathbb{S}$ be any arbitrary scalar.
+  \begin{enumerate}
+    \item $\braket{\B{x}|c\B{y}}^\prime = \braket{ \B{x} | H (c \B{y})} = c \braket{ \B{x} | H \B{y}} = c\braket{ \B{x} | \B{y}}^\prime$
+    \item $\braket{\B{x}| ~ \B{y} + \B{z}}^\prime = \braket{ \B{x}| ~ H (\B{y} + \B{z})} =  \braket{ \B{x}| H \B{y}} + \braket{ \B{x} | H \B{z}}=\braket{\B{x}| \B{y}}^\prime + \braket{\B{x}|\B{z}}^\prime$
+    \item $\braket{\B{x}| \B{y}}^\prime = \braket{  \B{x} | H \B{y}} = \overline{\braket{ H \B{y} |  \B{x}}} = \overline{\braket{  \B{y} | H \B{x}}} = \overline{(\braket{\B{y}|\B{x}}^\prime)}$
+    \item $(\braket{\B{x}| \B{x}}^\prime > 0 ) \leftrightarrow (\braket{ \B{x}| H \B{x}} > 0) \leftrightarrow  (H \B{x} \neq \vec{0})  \leftrightarrow (\B{x} \neq \vec{0})$.
+    \item $\braket{\vec{0}|\vec{0}}^\prime = \braket{ \vec{0} | H (\vec{0})} = \braket{\vec{0}|\vec{0}} = 0 $
+  \end{enumerate}
+
+\end{proof}
+
+% \pagebreak
+% \section{Inner Product Equivalence Condition}
+
+% \begin{remark}
+%   In fact, each inner product defined in this way is unique if the original linear operator was unique.
+% \end{remark}
+
+
+% \begin{theorem}[Inner Product Equivalence Condition]
+%   Define the linear operators $A, B \in \mathcal{L}_\circ$, and let $\braket{|}^A, \braket{|}^B$ be their induced inner products respectively. 
+%   Then 
+%   \begin{equation}
+%     \braket{|}^A = \braket{|}^B \iff A = B
+%     \label{eq:equivilanceCondition}
+%   \end{equation}
+%   \label{theorem:equivilanceCondition}
+% \end{theorem}
+
+% \begin{proof}
+%   Following the conventional equality definition for functions, two linear operators $A, B$ are defined to be 
+%   equal only iff $A \B{x} = B \B{x}$ for every $\B{x} \in \mathbb{V}$.
+  
+%   Similarly, two inner products $\braket{|}^A, \braket{|}^{B}$ are
+%   considered equal only iff $\braket{\B{x}|\B{y}}^A = \braket{\B{x}|\B{y}}^{B} ~ \forall \B{x}, \B{y} \in \mathbb{V}$.
+
+%   Firstly, it is obvious to see that 
+%   \begin{equation}
+%     A = B \implies \braket{\B{x}|A \B{y}} = \braket{\B{x}|B \B{y}} \implies \braket{\B{x}|\B{y}}^A = \braket{\B{x}|\B{y}}^{B}
+%   \end{equation}
+
+%   so all that remains is to show that $A \neq B \implies \braket{|}^A \neq \braket{|}^B$.
+% \end{proof}
+
+
+% \begin{definition}[Unitary Transformation]
+%   Using $\mathcal{L}$ to denote the set of all linear operators on $\mathbb{V}$, define the set of unitary transformations as follows:
+%   \begin{equation}
+%     \mathcal{L}_C = \set{C | C \in \mathcal{L} \text{~and~} \braket{C\B{x}|C\B{y}} = \braket{\B{x}|\B{y}} ~ \forall \B{x}, \B{y}}
+%     \label{eq:IPCSet}
+%   \end{equation}
+%   \label{def:UnitaryTransform}
+% \end{definition}
+
+% \begin{definition}[Linear Operator Equivalence Relation]
+%   Next, define the equivalence relation on the set $\mathcal{L}$, denoted by $A \sim B$, 
+%   for two linear operators $A, B \in \mathcal{L}$ such that
+%   \begin{equation}
+%     A \sim B \iff \text{~there exists~} C \in \mathcal{L}_C \text{~such that~} A\B{x} = C B \B{x}, ~ \forall \B{x} \in \mathbb{V}
+%   \end{equation} 
+
+% \end{definition}
+
+% \begin{proof}
+  
+%   Following the conventional equality definition for functions, two inner products $\braket{|}^\prime, \braket{|}^{\prime\prime}$ are
+%   considered equal iff $\braket{\B{x}|\B{y}}^\prime = \braket{\B{x}|\B{y}}^{\prime\prime} ~ \forall \B{x}, \B{y} \in \mathbb{V}$.
+
+%   Firstly, note that for $C$ to satisfy equation (\refeq{eq:IPCSet}), it must be non-singular and a member of $\mathcal{L}_\circ$.
+%   Assuming the contrary, if there exists any $\B{x} \neq \vec{0}$ for which $C \B{x} = \vec{0}$, then $\braket{\B{x}|\B{x}} \neq 0$,
+%   however, $\braket{C\B{x} | C\B{x}} = \braket{\vec{0}|\vec{0}} = 0$, so then $\braket{\B{x}|\B{x}} \neq \braket{C\B{x} | C\B{x}}$.
+%   This contradicts definition (\ref{def:UnitaryTransform}), so therefore any $C \in \mathcal{L}_C$ must be non-singular. 
+%   Consequently, the set $\mathcal{L}_C$ is a subset of $\mathcal{L}_\circ$.
+
+%   Additionally, any product of two non-singular linear operators is also non-singular: 
+%   if $A, B \in \mathcal{L}_\circ$, then $A B \B{x} = \vec{0} \leftrightarrow B\B{x} = 0 \leftrightarrow \B{x} = 0$. 
+
+%   Finally, for any two non-singular linear operators $A, B$, there always exists a third non-singular 
+%   linear operator $L$ such that $A \B{x} = L B\B{x}$. This is a consequence of each non-singular linear operator
+%   defining an inverse $A A^{-1} \B{x} = A^{-1} A \B{x} = \B{x}$ along with the previous result, which gives:
+%   $A\B{x} = A (B^{-1} B) \B{x} = (A B^{-1}) B \B{x} = L B \B{x} \longrightarrow A B^{-1} \B{x} = L\B{x} \in \mathcal{L}_\circ$. 
+
+%   Now to prove theorem (\ref{theorem:equivilanceCondition}), first take the case where $A \sim B$. Then, 
+%   for any $\B{x}, \B{y}$,
+%   \begin{align}
+%     \braket{\B{x}|\B{y}}^A &= \braket{A\B{x} | A\B{y}} \nonumber\\
+%     &= \braket{C (B \B{x}) | C (B \B{y})}   \nonumber\\
+%     &\overeq{\text{eq.(\refeq{eq:IPCSet})}} \braket{B\B{x}|B\B{y}} \nonumber \\
+%     &= \braket{\B{x}|\B{y}}^B \nonumber\\
+%     \therefore A \sim B &\implies \braket{|}^A = \braket{|}^B \label{eq:eqCondEq}
+%   \end{align}
+
+%   Next, suppose $A \nsim B$. The transform $A B^{-1}$ must still exist, so we therefore know that $A B^{-1} \notin \mathcal{L}_C$.
+%   Therefore, there exists $\B{x}, \B{y} \in \mathbb{V}$ such that $\braket{\B{x}|\B{y}} \neq \braket{ A B^{-1} \B{x} | A B^{-1} \B{y}}$.
+%   Hence,
+%   \begin{align}
+%     \braket{\B{x}|\B{y}} &\neq \braket{ A B^{-1} \B{x} | A B^{-1} \B{y}} \Longrightarrow \nonumber\\
+%     \braket{B B^{-1}\B{x}|B B^{-1}\B{y}} &\neq \braket{ A B^{-1} \B{x} | A B^{-1} \B{y}} \Longrightarrow \nonumber\\
+%     \braket{B^{-1} \B{x}|B^{-1}\B{y}}^B &\neq \braket{ B^{-1} \B{x} | B^{-1} \B{y}}^A \Longrightarrow \nonumber\\
+%     \braket{|}^A &\neq \braket{|}^B, \nonumber \\
+%     \therefore A \nsim B &\implies \braket{|}^A \neq \braket{|}^B  \label{eq:eqCondNeq}
+%   \end{align}
+
+%   Therefore, putting together equations (\refeq{eq:eqCondEq}) and (\refeq{eq:eqCondNeq}), we can see that
+%   \begin{equation}
+%     \braket{|}^A = \braket{|}^B \Longleftrightarrow A \sim B
+%     \label{eq:IP isomorphic condition}
+%   \end{equation}
+% \end{proof}
+% \pagebreak
+
+  % Next, proof that each inner product defined in this way is unique:
+
+  % Following the conventional equality definition for functions, two inner products $\braket{|}^\prime, \braket{|}^{\prime\prime}$ are
+  % considered equal iff $\braket{\B{x}|\B{y}}^\prime = \braket{\B{x}|\B{y}}^{\prime\prime} ~ \forall \B{x}, \B{y} \in \mathbb{V}$.
+
+  % For any two distinct non-singular linear operators $H, G$, there exists 
+
+\pagebreak  
+\section{Inner Product Completeness}
+Next, I will prove that every inner product can be associated with a Hermitian positive-definite linear operator.
+
+\begin{theorem}[Inner Product Completeness]
+  Take $f(\B{x}, \B{y})$ to be any function satisfying
+  the definition of an inner product. We can always find an associated
+  linear operator $H \in \mathcal{L}_\circ$ such that
+  \begin{equation}
+    f(\B{x},\B{y}) = \braket{\B{x}|H\B{y}} ~ \forall \B{x}, \B{y} \in \mathbb{V}
+  \end{equation}
+\end{theorem}
+
+\begin{proof}
+  Given $\braket{|}^\prime$, take the function $f_{\B{y}}(\B{x}) = \braket{\B{y} | \B{x}}^\prime$.
+  This function is a linear transformation from $\mathbb{V}$ to $\mathbb{S}$: 
+  \begin{enumerate}
+    \item  $f_{\B{y}}(c\B{x})= \braket{\B{y} | c\B{x}}^\prime = c \braket{\B{y} | \B{x}}^\prime = cf_{\B{y}}(\B{x})$
+    \item $f_{\B{y}}(\B{x} + \B{z})  = \braket{\B{y}| ~ \B{x} + \B{z}}^\prime = \braket{\B{y}| \B{x}}^\prime + \braket{\B{y}| \B{z}}^\prime =  f_{\B{y}}(\B{x}) + f_{\B{y}}(\B{z}) $
+  \end{enumerate}
+
+  Because $\mathbb{V}$ forms an inner product space, each vector element $\B{w}$ uniquely defines a linear transformation
+  from $\mathbb{V} \to \mathbb{S}$ given by $\braket{\B{w} | \B{x}} = L(\B{x})$. Moreover, the set of 
+  linear scalar maps over $\mathbb{V}$ is isomorphic to the set $\mathbb{V}$ itself, and any linear 
+  scalar transform $L_{\B{w}}(\B{x})$ can be uniquely assigned to a vector $\B{w}$ such that $L_{\B{w}}(\B{x}) = \braket{\B{w}|\B{x}} ~\forall \B{x} \in \mathbb{V}$
+  (Proved In Following Section).
+
+  For any given $\B{y}$, $f_{\B{y}}(\B{x})$ defines a linear scalar transform, and therefore there exists $\B{w}$ such that
+  $f_{\B{y}}(\B{x}) = \braket{\B{w} | \B{x}}$. Therefore, for any $\B{y} \in \mathbb{V}$, there exists unique $\B{w} \in \mathbb{V}$ such that
+  $\braket{\B{y}|\B{x}}^\prime = \braket{\B{w} | \B{x}} ~ \forall \B{x} \in \mathbb{V}$. Define the function $H : \mathbb{V} \to \mathbb{V}$ by
+  $\B{w} = H(\B{y})$, such that $\braket{\B{y}|\B{x}}^\prime \triangleq \braket{H(\B{y}) | \B{x}}$.
+  By the properties of linearity, $H(\B{y})$ must be linear:
+
+    $\braket{H(c\B{y}) | \B{x}}  =   \braket{c \B{y} |\B{x}}^\prime =  \braket{H(\B{y}) |\overline{c} ~ \B{x}} =  \braket{c H(\B{y}) | \B{x}} ~ \forall \B{x}, \B{y} ~ \therefore H(c\B{y}) = c H(\B{y})$
+
+   $\braket{H(\B{y} + \B{z}) | \B{x}} = \braket{\B{y} + \B{z} |\B{x}}^\prime =  \braket{H(\B{y}) + H(\B{z}) | \B{x}} ~ \therefore H(\B{y} + \B{z}) = H(\B{y}) + H(\B{z})$
+
+  So that $f(\B{y},\B{x}) = \braket{\B{y} | \B{x}}^\prime = \braket{H \B{y} |\B{x}}$.
+  
+  By the property of symmetry, 
+
+   \begin{align}
+    \braket{\B{y}|\B{x}}^\prime &= \braket{H(\B{y})|(\B{x})} = \overline{\braket{(\B{x})|H(\B{y})}} \text{, and} \nonumber\\
+    \braket{\B{y}|\B{x}}^\prime &= \overline{\braket{\B{x}|\B{y}}^\prime} = \overline{\braket{H(\B{x})|(\B{y})}}  \nonumber\\
+    \therefore & \braket{H(\B{x})|(\B{y})} =  \braket{(\B{x})|H(\B{y})} \label{eq:innerProductSymmetry}
+   \end{align}
+   Equation (\refeq{eq:innerProductSymmetry}) is true generally for any $\B{x}, \B{y} \in \mathbb{V}$, which is only possible if
+  $H = H^*$, and consequently $H$ must be Hermitian.
+
+   Finally, to show that $H(\B{y})$ must be positive-definite, we see from condition (4) of definition (\ref{def:InnerProduct}) 
+   that
+   \begin{equation*}
+    \B{x} \neq \vec{0} \longleftrightarrow \braket{\B{x}|\B{x}}^\prime > 0 
+   \end{equation*}
+   and hence 
+   \begin{equation}
+    \B{x} \neq \vec{0} \longleftrightarrow \braket{\B{x}|H\B{x}} > 0 \label{eq:proofPosDef}
+   \end{equation}
+
+
+   Therefore, every valid inner product $\braket{\B{x}|\B{y}}^\prime$ can be mapped to a 
+   Hermitian, positive definite linear operator such that 
+   \begin{equation}
+     \braket{\B{x}|\B{y}}^\prime = \braket{\B{x}|H\B{y}}
+   \end{equation}
+
+\end{proof}
+  
+
+  \pagebreak
+
+  % \begin{theorem}
+  %   Let $\mathcal{P}$ be the probability space for some system. Assume
+  %   exists observable $q$ and $p$ and $qp - pq = i\hbar$. 
+  %   Assume that $\ket{q^\prime}$ does not form a complete distinct basis in $\mathcal{P}$. 
+  %   The observable $p - i\hbar\frac{d}{dq}$ commutes with $q$. 
+  %   Denote $\sigma = p - i\hbar\frac{d}{dq}$.
+
+  %   Any set of commuting observables can be completed by adjoining
+  %   finite specifier observables $\set{\lambda}$.
+  %   Then there must exist $\Psi_1 \rangle, \Psi_2 \rangle$ for which 
+  %   $\Psi_1(q^\prime) =  \Psi_2(q^\prime)$, but 
+  %   whose representations differ in combined representation
+  %   $\Psi_1(q^\prime, \lambda^\prime) \neq  \Psi_2(q^\prime, \lambda^\prime)$.
+
+  %   Alternatively, within an orthogonal representation 
+
+  % \end{theorem}
+
+
+
+
+  % \begin{theorem}
+  %   % This is the proof that every linear transformation from V into S is isomorphic to the original V space itself - specifically
+  %   % the half of it every L(V->S) has an corresponding V so L(V->S) = <V, *>. The other side V mapping into L(V->S) is selfevident.
+  %   For some domain $\mathcal{D}$, assume exists $S(a) : \mathcal{D} \to \set{\mathcal{D}}$ such that
+  %   $\forall  \set{a | a \in \mathcal{D} \cap  S(a) \neq \emptyset} , ~ \forall s \in S(a) $, can find $b \in \mathcal{D}$ such that
+  %   $S(b) \subset S(a)$ and $s \notin S(b)$. Prove there exists $c \in \mathcal{D}$ such that $S(c) = \emptyset$.
+  % \end{theorem}
+  
+  % \begin{proof}
+    
+  % \end{proof}
+  
+  % \begin{theorem}
+  %   In IPS $\mathbb{V}$, every linear transformation from $L(\B{x}) : \mathbb{V} \to \mathbb{S}$ can be 
+  %   assigned an unique vector element $\B{y}$ such that 
+  %   \begin{equation}
+  %     L(\B{x}) = \braket{\B{y}|\B{x}} ~ \forall \B{x} \in \mathbb{V} \label{eq:linearMapCompleteness}
+  %   \end{equation}
+  % \end{theorem}
+  
+  % \begin{proof}
+  %   Assume exists set $\mathcal{L}_\emptyset$ such that, for each $L \in \mathcal{L}_\emptyset$,
+  %   there exists no $\B{y}$ satisfying equation (\refeq{eq:linearMapCompleteness}). By linearity,
+  %   any sum of linear transforms must also be a linear transform between those sets. Define 
+  %   $L_0(\B{x}) = L(\B{x}) + \braket{\B{x}_0|\B{x}}$ for some $\B{x}_0$. If $L_0(\B{x}) = \braket{\B{y}|\B{x}}$
+  %   for some $\B{y}$, then 
+  %   \begin{equation}
+  %     L(\B{x}) = L_0(\B{x}) - \braket{\B{x}_0|\B{x}} = \braket{\B{y}|\B{x}} - \braket{\B{x}_0|\B{x}} = \braket{\B{y} - \B{x}_0|\B{x}}
+  %   \end{equation}
+  %   which is a contradiction. Therefore $L_0$ must be in $\mathcal{L}_\emptyset$. Similarly, for 
+  %   any $L \in \mathcal{L}_\emptyset$ and $\B{x}_k \in \mathbb{V}$,
+  %   $L_k = L + \bra{\B{x}_k} $ must be in $\mathcal{L}_\emptyset$.
+  % \end{proof}
+  
+  % \begin{theorem}
+  %   Let $\mathcal{D} \subset \R$ define a domain with Borel-measure $ > 0$. 
+  %   Define the vector space $\mathscr{F}$ as set of functions $f(x) : \mathcal{D} \to \R$.
+  %   Let $\set{\phi(x)}$ be the set of functions defined and measurable over $\mathcal{D}$, with 
+  %   $\phi(a) > \phi(b) \leftrightarrow a > b, ~ \forall a, b \in \mathcal{D}$.
+  %   All valid inner products on $\mathbb{V}$ are defined by 
+  %   \begin{equation}
+  %     \braket{f(x)|g(x)}^\prime = \int f(x) g(x) d \phi^\prime(x)  
+  %   \end{equation}
+  %   for some $\phi^\prime \in \set{\phi(x)}$.
+  % \end{theorem}
+  
+  
+  % \begin{proof}
+  %   Trivially, note that 
+  %   \begin{equation}
+  %     \braket{f(x)|g(x)} \triangleq \int_D f(x)g(x) dx
+  %     \label{eq:base functional inner product}
+  %   \end{equation}
+  %   defines a valid inner product on $\mathscr{F}$.
+  %   Therefore, any other inner product $\braket{\B{f}|\B{g}}^\prime = \braket{L\B{f} | L\B{g}} = \int_D L \B{f} (x) L\B{g}(x) dx$
+  %   where $L$ is a non-singular linear operator on $\mathscr{F}$, up to isomorphism as defined previously.
+  
+  %   \begin{proposition}
+  %     All valid linear operators on $\mathscr{F}$ are defined by $L[\B{f}](x) = l(x) f(x)$ 
+  %     for some $l \in \mathscr{F}$, and $L[\B{f}]$ meaning that $L$ is acting on the function
+  %     entity itself, rather than just on any particular value of $f(x)$. 
+  %   \end{proposition}
+  
+  %   \begin{proposition}
+  %     Let $h(x)$ be a measurable function defined on $\mathcal{D}$. Then the transform given by 
+  %     $H[f](x) = h(x) f(x)$ defines a linear operator on $\mathscr{F}$.
+  %   \end{proposition}
+  %   \begin{proof}
+  %     By definition of measurability, if both $f(x), h(x)$ are measurable, then their product $f(x)h(x)$ is measurable as well,
+  %     and therefore $H[f](x) \in \mathscr{F}$. Let $g(x) \in \mathscr{F}$ be an arbitrary element in the vector space, and $c \in \R$
+  %     be an arbitrary scalar.
+  
+  %     \begin{enumerate}
+  %       \item  $H[c\B{f}](x) = h(x) (cf(x)) = c h(x) f(x) = cH[\B{f}](x)$
+  %       \item  $H[\B{f} + \B{g}](x) = h(x) f(x)  + h(x) g(x) = H[\B{f}](x) + H[\B{g}](x)$
+  %     \end{enumerate}
+  
+  %   % dim(ker T) = 0 is the condition on T that <Tx|Tx> neq 0, and it is equivalent condition to
+  %   % T being left invertible, existing S such that STx = x., ST = I.
+    
+  %   % In the finite dimension case, the condition that there exists y in V but not in img(f) is equivalent to 
+  %   % dim(ker(f)) + dim(im(f)) = dim(V) <-> dim(im(f)) < dim(V) <-> dim(ker(f)) > 0, exists x neq 0 s.t. fx = 0.
+  
+  %   % But in the infinite dimension case, y in V but not in img(f) does not necessarily imply that 
+  %   % exists x neq 0 s.t. fx = 0.
+  
+  %   % Dimensionality of measurable functions on R is aleph_0 not aleph_1, is countable infinity not continuous infty
+  
+  %   \end{proof}
+  
+  %   \begin{proposition}
+  
+  %     Let $L \in \mathcal{L}(\mathcal{L}(\mathbb{V}, \mathbb{V}))$ be a linear operator on $\mathbb{V}$. 
+  %     $L$ is defined to be spanning iff: 
+  %     \begin{equation}
+  %       \text{For every } \B{y} \in \mathbb{V}, \text{ there exists } \B{x} \in \mathbb{V} \text{ such that } L\B{x} = \B{y}
+  %       \label{eq:DefineSpanning}
+  %     \end{equation}
+  %     Define the set of spanning linear operators $\mathcal{L}_S \subset \mathcal{L}$ and non-spanning linear operators
+  %     $\mathcal{L}_N \subset \mathcal{L}$ such that $\mathcal{L}_S \cap \mathcal{L}_N = \emptyset$ and $\mathcal{L}_S \cup \mathcal{L}_N = \mathcal{L}$.
+  
+  %     The null space of a linear operator $L \in \mathcal{L}$ contains non-zero elements iff $L \in \mathcal{L}_N$.
+  %   \end{proposition}
+  
+  %   \begin{proof}
+  
+  %   \end{proof}
+  % \end{proof}
+   
+% \begin{theorem}
+%   Assume exists vector space $\mathbb{V}$ and IPS $\braket{|}$.
+%   For any two linearly independent elements $\vec{v}, \vec{w} \in \mathbb{V}, \vec{v}, \vec{w} \neq \vec{0}$, there exists
+%   inner product $\braket{|}^\prime$ on $\mathbb{V}$ such that $\braket{\vec{v}|\vec{w}}^\prime = 0$.
+  
+%   Define $\vec{w}^\prime$ to be the element that $\vec{v} + \vec{w}^\prime \triangleq \vec{w}$,
+%   and $\braket{\vec{v}|\vec{w}^\prime} \triangleq \vec{0}$. For any element 
+%   $\vec{p} = p_v \vec{v} + p_w \vec{w} + \vec{p}_{\perp}$ where $\vec{p}_\perp$ 
+%   is any element orthogonal to both $\vec{v}$ and $\vec{w}$, 
+%   and 
+%   \begin{equation}
+%     \begin{cases}
+%       p_v  &= (\braket{\vec{p}~|~\vec{v}} - \braket{\vec{p}~|~\vec{w}}\braket{\vec{v}~|~\vec{w}}) \vec{v} \\
+%       p_w  &= (\braket{\vec{p}~|~\vec{w}} - \braket{\vec{p}~|~\vec{v}}\braket{\vec{v}~|~\vec{w}}) \vec{w} \\
+%     \end{cases}
+%   \end{equation}
+
+    
+%   Define 
+%   \begin{equation}
+%     \braket{\vec{p}~|~\vec{q}}^\prime \triangleq p_v q_v + p_w q_w + \braket{\vec{p}_{\perp}| \vec{q}_{\perp}}
+%   \end{equation}
+
+%   Then $\braket{|}^\prime$ is a valid inner product on $\mathbb{V}$, with $\braket{\vec{v}|\vec{w}} \triangleq 0$ .
+
+% \end{theorem}
+% \begin{proof}
+%   From previous definition:
+%   \begin{enumerate}
+%     \item $\braket{\B{x}|c\B{y}}^\prime = x_v (c y_v) + x_w (c y_w) + c\braket{\B{x}_\perp | \B{y}_\perp}  = c\braket{\B{x} | \B{y}}^\prime  $
+%     \item $\braket{\B{x}| ~ \B{y} + \B{z}}^\prime =  x_v (y_v + z_v) + x_w (y_w + z_w) + \braket{\B{x}_\perp | \B{y}_\perp + \B{z}_\perp} = \braket{\B{x}| \B{y}}^\prime + \braket{\B{x}|\B{z}}^\prime$
+%     \item $\braket{\B{x}| \B{y}}^\prime =x_v ( y_v) + x_w ( y_w) + \braket{\B{x}_\perp | \B{y}_\perp} = y_v ( x_v) + y_w ( x_w) + \braket{\B{y}_\perp | \B{x}_\perp} =  \braket{\B{y}|\B{x}}^\prime$
+%     \item $\braket{\B{x}| \B{x}}^\prime = (x_v)^2 + (x_w)^2 + \braket{\B{x}_{\perp}| \B{x}_{\perp}}$, each term is positive, except iff $\B{x} = \vec{0}$.
+%   \end{enumerate}
+% \end{proof}
+
+% \begin{theorem}
+%   For any set of linearly independent, non-zero vector elements $\{\B{u}_k\}$ in IPS $\mathbb{V}$,
+%   there exists valid inner product $\braket{|}^\prime$ on $\mathbb{V}$ such that $\braket{\B{u}_i|\B{u}_j}^\prime \triangleq \delta_{ij}$.
+% \end{theorem}
+
+% \begin{theorem}
+%   For $k \in \R$, define 
+%   \begin{equation}
+%     \B{u}_k(x) \triangleq 
+%     \begin{cases}
+%       0,  & x \neq k \\
+%       1, & x = k \\
+%     \end{cases}
+%   \end{equation}
+  
+%   Then any set $\{\B{u}_k\}$ is linearly independent. Therefore, if $\B{u}_k$ are elements within
+%   some IPS $\mathbb{V}$, there exists $\braket{|}^\prime$ such that $\{\B{u}_k\}$ are orthonormal.
+
+%   Define the function $I(x) = 1$. If $I(x) \in \mathbb{V}$, then $\braket{I(x)|I(x)}$ is well defined.
+  
+%   If we have by $\delta(x)$ defined by $\int \delta(x) dx = 1$ and $\delta(a) = 0 ~ \forall a \neq 0$,
+%   then $I(x) = \int \B{u}_k (x) \delta(k - x) dk$. Then 
+%   \begin{align}
+%     \braket{I(x)|I(x)} &= \int \int \braket{\B{u}_l(x)\delta(l-x)|\B{u}_k(x)\delta(k-x)} dl dk \\
+%     &= \int \int \delta(0)^2 \braket{}
+%   \end{align}
+% \end{theorem}
+% \begin{theorem}
+%   Assume IPS $\mathbb{V}$ has inner product $\braket{|}$. Let $\set{\B{u}_k}$ be a countable,
+%   linearly independent, non-zero subset of $\mathbb{V}$. All valid inner products 
+%   on $\mathbb{V}$ can be generated by 
+%   \begin{equation}
+%     \braket{\B{x}|\B{y}}^\prime = \sum_{i=0}^k x_{u_i} y_{u_i} + \braket{\B{x}_\perp |\B{y}_\perp}
+%   \end{equation}
+% \end{theorem}
+
+
+
+
+% \newpage
+% \begin{definition}[Vector Space]
+%   A Vector Space $\mathbb{V}$ is defined along with a scalar field $\mathbb{S}$
+%   to be any set that has the following properties:
+
+%   \begin{enumerate}
+%     \item Scalar Multiplication Operator: $\B{x} \in \mathbb{V}, c \in \mathbb{S} \rightarrow c \B{x} \in \mathbb{V}$
+%     \item Commutative Vector Addition Operator: $\B{x}, \B{y} \in \mathbb{V} \rightarrow \B{x} + \B{y} \in \mathbb{V}$
+%     \item Scalar Multiplication is Distributive Across Vectors: $c (\B{x} + \B{y}) = c \B{x} + c \B{y}$
+%     \item Scalar Multiplication is Distributive Across Scalars: $ (c_1 + c_2) \B{x} = c_1 \B{x} + c_2 \B{x}$
+%     \item $\vec{0}$ Vector Element: $\B{x} + \vec{0} = \B{x} ~ \forall \B{x} \in \mathbb{V}$
+%     \item 0 Scalar Element: $0 \B{x} = \vec{0} ~ \forall \B{x} \in \mathbb{V}$
+%     \item Identity Scalar Element: $1 \B{x} = \B{x} ~ \forall \B{x} \in \mathbb{V}$ 
+%   \end{enumerate}
+%   \label{def:vectorSpace}
+% \end{definition}
+
+% From this, we can rigorously show that the set of functions
+% on $x$ do indeed satisfy the conditions of a vector space - more 
+% specifically the set of functions defined over some common domain.
+
+% \begin{theorem}[Function Space]
+%   Let $\mathcal{D} \subset \R$ be any domain over the real numbers. 
+%   Let $\mathscr{F}(\mathcal{D})$ be defined as the set of all functions $f(x) : \mathbb{R} \to \mathbb{R}$ well defined over $\mathcal{D}$. 
+%   In conjunction with the scalar field $\R$, this set defines a vector space satisfying definition (\ref{def:vectorSpace}).
+% \end{theorem}
+
+% \begin{proof}
+%   Let $f(x)$ be any element in the set $\mathscr{F}(\mathcal{D})$. For any scalar $c$, $cf(x)$ is also a well defined function 
+%   defined over $\mathcal{D}$ and is therefore also in $\mathscr{F}(\mathcal{D})$, satisfying condition 1. Additionally,
+%   the sum of two functions $f(x) + g(x)$ is well defined over $\mathcal{D}$, satisfying condition 2. 
+%   Conditions 3 and 4  are defined as part of the algebra of functions.
+%   The $\vec{0}$ function element can be defined to be $\vec{0}(x) = 0$,
+%   so that $f(x) + \vec{0}(x) = f(x)$, satisfying condition 5. Finally,
+%   conditions 6 and 7 are satisfied with the conventional scalars of 0 and 1,
+%   both of which, when multiplied into any function, produce results in correspondance
+%   to the definition, showing that the set $\mathscr{F}(\mathcal{D})$ is indeed a valid vector space.
+
+% \end{proof}
+
+% \section{Defining An Inner Product}
+% One of the most powerful things about vector spaces is they allow any member element to 
+% be written as a linear combination of a much smaller set of standard basis vectors.
+
+% However, generally to determine these coefficients, an inner product is needed.
+% In a normal 2 or 3 dimensional vector space, the inner product, or the dot product,
+% can give a measure of the degree to which two vectors are geometrically `close',
+% determined by the angle between the two vectors. The Inner Product doesn't need
+% to be restricted to this geometric definition though, and can be generalized
+% to allow for a measurement of `closeness' encompassing vector spaces in a broader sense.
+
+
+
+% \subsection{Finding A Valid Inner Product in $\mathscr{F}$}
+
+% In general, an inner product can be any mapping of two vectors into a scalar that satisfies the conditions outline above.
+% However, taking into account the value of the function over its entire 
+% domain and mapping that into a scalar is most commonly associated with 
+% taking the definite integral of the function. As such, it is especially useful
+% to define the inner product of two functions as follows, noting that
+% this definition satisfies all the properties previous outlined on the 
+% inner product. 
+
+% \begin{theorem}[Inner Product In Function Space]
+%   Let the domain $\mathcal{D}$ be equal to some bounded interval $[a, b] \in \R$.
+%   Let $\mathscr{F}_M(\mathcal{D})$ be the subset of $\mathscr{F}(\mathcal{D})$ containing every 
+%   measurable function over the domain, or for which 
+%   $$ \int_a^b f(x) dx $$ is defined. Then define the function 
+%   \begin{equation}
+%     \braket{f(x)| g(x)} = \int_a^b f(x) g(x) dx
+%     \label{eq:standardIP}
+%   \end{equation}
+%   This function is defined and constitutes a valid inner product for all $f(x), g(x) \in \mathscr{F}_M(\mathcal{D})$.
+% \end{theorem}
+
+% % \begin{proof}
+% %   Firstly, note that 
+% % \end{proof}
+
+% \section{Orthogonal Functions}
+
+% Now that an inner product has been established, we still need to 
+% outline some properties on the set of basis vectors we are using
+% to attempt to reconstruct every other function. Now, theoretically 
+% any set of vectors can be chosen - however, when choosing 
+% basis vectors, two properties we find in 2 and 3 dimensional 
+% basis vectors are especially useful and can be generalized 
+% to our current case.
+
+% Firstly, the set of vectors $\hat{i}, \hat{j}, \hat{k}$ are all \textit{orthogonal} - 
+% meaning geometrically that any two different basis vectors are perpendicular.
+
+% Secondly, each of the basis vectors is \textit{normalized}, meaning 
+% in the 3-dimensional case that they all have a length of 1.
+
+% To rigorously define these properties in the case of function space,
+% the following definition for an Orthonormal Set is used:
+
+% % This is orthonormal
+
+% \begin{definition}[Orthonormal Set]
+%   A set of vectors $\mathit{U} = \left\{ \B{u}_1, ... , \B{u}_n \right\}$ is defined
+%   to be an orthonormal set iff
+%   \begin{equation}
+%     \braket{\B{u}_i| \B{u}_j} = \delta_{ij}, ~ \forall \B{u}_i, \B{u}_j \in  \mathit{U}
+%   \end{equation}
+%   With the Kronecker Delta $\delta_{ij}$ being defined as 
+%   \begin{equation}
+%     \delta_{ij} = 
+%     \begin{cases}
+%       0,  & i \neq j \\
+%       1, & i = j \\
+%     \end{cases}
+%   \end{equation}
+%   \label{def:OrthagonalSet}
+% \end{definition}
+
+% This provides a meaning to an orthogonal set of basis functions within function space.
+% For some set of functions $\mathit{U} = {\B{u}_n(x)}$ to be orthogonal,
+% combining the inner product from equation (\refeq{eq:standardIP}) with definition (\ref{def:OrthagonalSet})
+% gives:
+
+% \begin{equation}
+%   (\B{u}_i(x), \B{u}_j(x)) = \int_a^b \B{u}_i(x) \B{u}_j(x) dx  = \delta_{ij}
+% \end{equation}
+
+% \subsection{Defining The Closest Representation in an Orthonormal Basis}
+
+% Given a set of orthonormal basis vectors ${\B{u}_n(x)}$, my next goal was 
+% figuring out the process by which to determine coefficients ${c_n}$ such 
+% that the linear combination $\sum_{k=1}^n c_k \B{u}_k(x)$ either equaled
+% or best approximated the original arbitrary function $f(x)$. Speaking
+% in terms of a traditional 3 dimensional vector space with a vector $\vec{v}$, this 
+% amounts to determining its x, y and z coordinates, allowing the original 
+% vector to be written as a linear combination of the basis vectors $\hat{i}, \hat{j}, \hat{k}$.
+
+% As established earlier, establishing a vector representation in terms of a set of 
+% basis vectors is tremendously useful, because many important operations possessing the 
+% property of linearity can first be computed individually on the set of basis vectors,
+% then rescaled by the given coefficients to determine the effect of applying the function 
+% on the original vector itself. 
+
+% However, unlike vector spaces of finite dimension, the uncountable amount of ways
+% in which any two functions can differ makes it quite likely that no set of orthonormal vectors 
+% $\{\B{u}_n\}$ can span our entire vector space. Additionally, even in the case that there does exist a valid set of 
+% basis vectors, it is reasonable to believe that such a set would have an infinite number of 
+% elements. Because of this, it is immensely useful to construct a measure of how 
+% \textit{close} a given linear approximation is to the original function - giving a formal meaning to 
+% our intuitive sense of 'bad', 'good' or 'best' approximation. 
+
+% Let $\{\B{u}_n\}$ be an orthonormal set, and the $f(x)$ be any arbitrary function in our vector space. 
+% For a given set of scalars ${c_n}$, define the function 
+% \begin{equation}
+%   F(x) = c_1 \B{u}_1(x) + c_2 \B{u}_2(x) ... + c_n \B{u}_n(x)
+%   \label{eq:approxFn}
+% \end{equation}
+% to be the representation of $f(x)$ in the basis set. 
+% The difference between the representation and original function is another function of $x$
+% given by $\delta(x) = f(x) - F(x)$. Because $\delta(x)$ is defined as the linear combination
+% of $f(x)$, an element of $\funcSpace$, and $\basisSet$, all of which are elements of $\funcSpace$,
+% $\delta(x)$ must then also be a member of $\funcSpace$ - which in turn means that it has a valid 
+% inner product. 
+
+% Again using intuition from geometry, classically the `distance' between two vectors is 
+% the norm of the difference between those vectors - written in terms of the inner product as 
+% $\norm{\vec{v} - \vec{u}}^2 = (\vec{v} - \vec{u}, \vec{v} - \vec{u})$. This can be applied to 
+% say that the measure of how `close' an approximation function is from the original is given by 
+% \begin{equation}
+%   \norm{\delta(x)}^2 = \braket{f(x) - F(x) ~| ~f(x) - F(x)}
+%   \label{eq:distEq}
+% \end{equation}
+
+% Therefore, given the orthonormal basis $\basisSet$, the best approximation is defined 
+% to be the set of coefficients $\{c_n\}$ that minimize `distance' from equation (\refeq{eq:distEq}).
+
+% \subsection{Determining The Linear Representation of a Given Function}
+
+% Finally, to answer my research question, the last part of this essay will be dedicated
+% to determining how these coefficients relate to the given set of orthonormal basis functions, 
+% and attempting to find (if it exists) a basis such that the best linear approximation can reproduce exactly
+% any arbitrary function in the entire space.
+
+% Firstly, for a given $f(x)$ and basis $\basisSet$, define the set $\{c_n\}$ and corresponding function $F_c(x) = \sum_{k=1}^n c_k \B{u}_k$
+% such that, for any other linear combination $\{d_n\}$,
+% \begin{equation}
+%   \braket{f- F_c ~| ~ f - F_c} \leq \braket{f - F_d ~ | ~ f - F_d}
+%   \label{eq:bestApprox}
+% \end{equation}
+% with the two sides being equal if and only if the set $\{d_n\}$ is exactly equal to $\{c_n\}$.
+% (Note: the (x)'s have been dropped from here forwards for convenience, but are implied whenever not explicitly written).
+% Following from equation (\refeq{eq:bestApprox}) using the properties of 
+% linearity,
+% \begin{align}
+%   \braket{f- F_c ~| ~ f - F_c} &\leq \braket{f - F_d ~ | ~ f - F_d} \nonumber\\
+%   \braket{f|f} - 2\braket{f|F_c} + \braket{F_c|F_c} &\leq \braket{f|f} - 2\braket{f|F_d} + \braket{F_d|F_d} \nonumber\\
+%   - 2\braket{f|F_c} + \braket{F_c|F_c} &\leq - 2\braket{f|F_d} + \braket{F_d|F_d} 
+%   \label{eq:8}
+% \end{align}
+
+% Expanding $\braket{F_c|F_c}$ using $\B{u}_i(x) \B{u}_j(x) = 0 \leftrightarrow i \neq j$ and $\braket{\B{u}_i(x) |\B{u}_i(x)} = 1$, we get:
+
+% \begin{align}
+%   \braket{F_c | F_c} &= \int F_c(x) F_c(x) dx \nonumber\\
+%   &= \int(\sum_k^n c_k \B{u}_k(x) \sum_k^n c_k \B{u}_k(x)) dx \nonumber\\
+%   &= \int \sum_k^n (c_k \B{u}_k(x)) ^2 dx \nonumber\\
+%   &=  \sum_k^n  {c_k}^2 \int  (\B{u}_k(x)) ^2 dx \nonumber\\
+%   &=  \sum_k^n {c_k}^2  \braket{\B{u}_k | \B{u}_k } \nonumber\\
+%   &=  \sum_k^n {c_k}^2 \label{eq:9}
+% \end{align}
+
+
+% Similarly expanding $\braket{f|F_c}$, we get:
+% \begin{align}
+%   \braket{f| F_c} &= \int f(x) F_c(x) dx \nonumber\\
+%   &= \int \sum_k^n c_k (f(x) \B{u}_k(x)) dx \nonumber\\
+%   &=  \sum_k^n c_k \braket{f(x)| \B{u}_k }  \label{eq:10}
+% \end{align}
+
+% And plugging equations (\refeq{eq:9}) and (\refeq{eq:10}) into (\refeq{eq:8}) to get:
+% \begin{align}
+%     2\braket{f|F_c} - \braket{F_c|F_c} &\geq 2\braket{f|F_d} - \braket{F_d|F_d}   \nonumber\\
+%     2 \sum_k^n c_k \braket{f(x)| \B{u}_k } - \sum_k^n {c_k}^2 &\geq 2 \sum_k^n d_k \braket{f(x)| \B{u}_k } - \sum_k^n {d_k}^2 \nonumber\\
+%     \sum_k^n(2 c_k \braket{f(x)| \B{u}_k } - {c_k}^2) &\geq \sum_k^n(2 d_k \braket{f(x)| \B{u}_k } - {d_k}^2)  \label{eq:almost}
+% \end{align}
+% Because equation (\refeq{eq:almost}) is true for any set $\{d_k\}$, even sets that only differ 
+% in one single coefficient, equation (\refeq{eq:almost}) must be true term for term - that is to say:
+% \begin{align}
+%   (2 c_k \braket{f(x)| \B{u}_k } - {c_k}^2) &\geq (2 d_k \braket{f(x)| \B{u}_k } - {d_k}^2) ~ \forall k \in n, \\
+%   (2 c_k \braket{f(x)| \B{u}_k } - {c_k}^2) - \braket{f(x)| \B{u}_k }^2  &\geq (2 d_k \braket{f(x)| \B{u}_k } - {d_k}^2) - \braket{f(x)| \B{u}_k }^2 \nonumber\\
+%   -({c_k} - \braket{f(x)| \B{u}_k })^2  &\geq -({d_k} - \braket{f(x)| \B{u}_k })^2 \nonumber\\
+%   ({c_k} - \braket{f(x)| \B{u}_k })^2  &\leq ({d_k} - \braket{f(x)| \B{u}_k })^2 ~ \forall d_k \in \R \nonumber\\
+%   \therefore ~ c_k &= \braket{f(x)| \B{u}_k }, ~ \forall k \in n \label{eq:bestApproxEqn}
+% \end{align}
+
+% Therefore, from equation (\refeq{eq:bestApproxEqn}), the representation of a function in an orthonormal
+% basis is obtained by taking the inner product between that function and each basis function.
+
+% \begin{definition}
+%   Given two vector spaces $\mathbb{V}, \mathbb{W}$ defined over the same scalar field $\mathbb{S}$,
+%   a function $f(\vec{v}) : \mathbb{V} \to \mathbb{W}$ defined over the entire vector field
+%   $\mathbb{V}$ is said to be linear iff it satisfies the following conditions:
+
+%   \begin{enumerate}
+%     \item Scalar Associativity: $f(c \vec{v}) = c f(\vec{v}) ~ \forall \vec{v} \in \mathbb{V}, c \in \mathbb{S} $
+%     \item Distributive Across Vector Addition: $f(\vec{v}_1 + \vec{v}_2) = f(\vec{v}_1) + f(\vec{v}_2) ~ \forall \vec{v}_1, \vec{v}_2 \in \mathbb{V}$
+%   \end{enumerate}
+%   \label{def:linearity}
+% \end{definition}
+
+% \begin{definition}
+%   A Linear Operator is defined to be a function from one vector space to itself $f(\vec{v}) : \mathbb{V} \to \mathbb{V}$ that satisfies
+%   the properties of linearity outlined in definition (\ref{def:linearity}).
+%   \label{def:linearOperator}
+% \end{definition}
+
+
+% \begin{definition}
+%   Let $\B{x} \in \mathbb{V}$ for some vector space $\mathbb{V}$, and let $\xi \in \mathscr{L}(\mathbb{V}, \mathbb{V})$ be defined
+%   as a linear operator over $\mathbb{V}$. 
+%   For some scalar $\lambda_r$, $\B{x}_r$ is defined to be an eigenvector of the eigenvalue $\lambda_r$ iff
+%   \begin{equation}
+%     \xi \B{x}_r = \lambda_r \B{x}_r
+%   \end{equation}
+%   \label{def:Eigenvalues}
+% \end{definition}
+
+
+
+
+
+% \begin{theorem}
+%   Let $\mathscr{F}_C(\mathcal{D})$ be defined as the subset of $\mathscr{F}(\mathcal{D})$ containing all functions
+%   which are infinitely differentiable, or for which $\frac{d^n}{(dx)^n} f(x)$ exists 
+%   for $n \in \mathbb{N}$ over the domain $\mathcal{D}$. The derivative then
+%   defines a linear operator over the vector space $\mathscr{F}_C(\mathcal{D})$.
+% \end{theorem}
+
+% \begin{proof}
+%   A linear operator as defined in (\ref{def:linearOperator}) refers to a mapping of a vector space into itself that satisfies the 
+%   conditions of linearity. 
+
+%   First, showing that the derivate maps $ \mathscr{F}_C(\mathcal{D})$ into itself:
+
+%   Take any infinitely differentiable function $f(x)$ over $\mathcal{D}$. 
+%   Then for any $n \in \mathbb{N}$, $\frac{d^{n+1}}{(dx)^{n+1}} f(x)$ is also defined.
+%   $\frac{d^{n+1}}{(dx)^{n+1}} f(x) = \frac{d^n}{(dx)^n} \frac{d}{dx} f(x)$, hence the derivative
+%   of any infinitely differentiable function is also infinitely differentiable, and so 
+%   if $f(x) \in \mathscr{F}_C(\mathcal{D})$, then $\frac{d}{dx} f(x) \in  \mathscr{F}_C(\mathcal{D})$.
+
+%   Next, showing that the derivative satisfies the conditions of linearity:
+%   \begin{enumerate}
+%     \item Scalar Associativity: $\frac{d}{dx} (c f(x)) \triangleq c \frac{d}{dx} f(x)$
+%     \item Distributivity: $\frac{d}{dx}(f(x) + g(x)) \triangleq \frac{d}{dx} f(x) + \frac{d}{dx} g(x)$
+%   \end{enumerate}
+
+%   Therefore the derivative satisfies a linear operator over $\mathscr{F}_C(\mathcal{D})$.
+% \end{proof}
+
+
+% \subsection{Constructing An Inner Product On $\mathscr{F}_C(\mathcal{D})$}
+% \begin{theorem}
+
+% \end{theorem}
+
+
+% \begin{theorem}
+%   Let $\mathbb{P}^n$ be the set of all real n-degree polynomials of the form
+%   \begin{equation}
+%     x^n + a_1 x^{n-1} + ... + a_{n-1} x^1 + a_n = 0
+%   \end{equation}
+%   where the coefficients $a_i$, besides the condition that they 
+%   are all real, can have any values whatsoever.
+
+%   This set is one-to-one isomorphic to the set of all root-forms of degreen $n$,
+%   written as 
+
+%   \begin{equation}
+%     (x-b_1) (x-b_2) ... (x-b_{n-1}) (x-b_{n}) = 0, 
+%     \label{eq:factorForm}
+%   \end{equation}
+%   with $b_i \in \mathbb{C}$, and the condition that,
+%   for each $i \in n$, there also exists a unique $j \in n$ such that
+%   $b_i = \overline{b_j}$, with the two indices $i, j$ possibly being equal
+%   in the case where $b_i$ is real.
+
+% \end{theorem}
+
+% First this will be proven in the case of $n = 2$.
+% \begin{proof}
+%   Firstly, note that the set $\mathbb{P}^n$ is isomorphic to 
+%   the set $\mathbb{R}^n$. The coefficients can be any real number 
+%   independent of the others, and each unique set of real coefficients 
+%   gives a unique polynomial not expressible in any other way. 
+
+%   This means that $\mathbb{P}^2$ is isomorphic to $\mathbb{R}^2$.
+%   Next, the factor form in equation (\refeq{eq:factorForm}) for the 
+%   case of $n = 2$ can be divided into two cases: either both $b_1, b_2$ are real,
+%   or $b_1 = \overline{b_2}$. This accounts exhaustively for all of the 
+%   factor form cases of n = 2 with the conditions outlined above.
+  
+%   First consider the case where both coefficients are real. 
+  
+  
+%   This 
+%   is isomorphic to the set 
+% \end{proof}
+
+
+
+
+% \begin{theorem}
+%   Let $f(x) : \R \to \R$ be well defined and definite increasing 
+%   in interval $(a, b) \in \R$. Then $f(x)$ must be continuos on an infinite 
+%   set of points $C \subset (a , b)$ within the interval.
+% \end{theorem}
+
+
+% \begin{proof}
+%   Let $y_a = f(a)$. 
+%   By definition of continuity, there exists some $\epsilon_a$ such that 
+%   no matter how small $\delta_a > 0$ is chosen, $\abs{f(a + \delta_a)- f(a)} < \epsilon_a$.
+  
+%   Given that $f(x)$ is definite increasing within the interval, $f(a + \delta_a)- f(a) < \epsilon_a$.
+
+% \end{proof}
+
+
+
+% \begin{theorem}
+%   Let $\mathscr{F}$ denote the set of $f(\B{x}, t) \to \R^+$ with unity integral.
+%   $C(\B{p}_1, \B{p}_2, \vec{R}) \to \B{p}^\prime$ is the collision kernel.
+%   To find how $f(\B{x}, t)$ changes with time, you can analyze for each point, what is the 
+%   probability that it maps somewhere else taking that as losses. And then look at the probability that
+%   something maps to it. 
+% \end{theorem}
+
+% \end{proof}
+\pagebreak
+\medskip
+
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{apalike}
+\bibliography{references}
+
+\end{document}
